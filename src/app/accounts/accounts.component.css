@@ -1,0 +1,31 @@
+.row-update {
+    display: flex;
+    justify-content: flex-end;
+}
+.badge {
+    display: inline-block;
+    padding: 0.95em 0.95em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: hwb(152 21% 20%);
+}
+.badge-warn {
+    display: inline-block;
+    padding: 0.95em 0.60em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #313131;
+    background-color:#ffd5007a;
+}

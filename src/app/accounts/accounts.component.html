@@ -1,0 +1,58 @@
+<div class="table-title">
+    <div class="row">
+        <div class="col-6">
+            <h4>All Accounts</h4>
+        </div>
+        <div class="col-6">
+            <div class="row row-update">
+                <div class="col-3">
+                    <select class="form-select form-select-sm mb-4" aria-label=".form-select-sm example" >
+                        <option selected>Filter By</option>
+                        <option value="1">status</option>
+                        <option value="2">last transaction data</option>
+                        <option value="3">type</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-outline-success" routerLink = "/add-account">
+                        Add Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-hover ">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">AccountName</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Last transaction date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Type</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let account of accounts">
+            <th scope="row">{{account.id}}</th>
+            <td>{{account.accountName}}</td>
+            <td>{{account.balance}}</td>
+            <td>{{account.createdAt}}</td>
+            <td>{{account.lastTransactionDate}}</td>
+            <td>
+                <span [ngClass]="{'badge': account.status === 'active',
+                                    'badge-warn': account.status === 'not active'}">
+                    {{account.status}}
+                </span>
+            </td>
+            <td>{{account.type}}</td>
+            <td><button type="button" class="btn btn-outline-primary">
+                View Details
+            </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
