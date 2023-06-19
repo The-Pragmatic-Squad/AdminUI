@@ -1,0 +1,12 @@
+<div>
+<div class="container" *ngFor="let account of accounts">
+    <div class="user-container">
+        <div class="user-name">{{ account.userName }}</div>
+        <div class="user-job">{{account.balance}}</div>
+        <button routerLink="/view-details" (click)="showDetails(account.id)">Details</button>
+    </div>    
+</div>
+<router-outlet></router-outlet>
+<!-- <app-account-details></app-account-details> -->
+</div>
+<!-- routerLink="/view-details" -->

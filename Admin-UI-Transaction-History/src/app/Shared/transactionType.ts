@@ -1,0 +1,1 @@
+enum TransactionType{CREDIT, DEPIT}
