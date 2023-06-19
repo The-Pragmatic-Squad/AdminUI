@@ -9,8 +9,8 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountsService } from './services/accounts.service';
 import { AccountTransactionsHistoryComponent } from './account-transactions-history/account-transactions-history.component';
+import { AccountsService } from './Services/accounts.service';
 
 
 @NgModule({
