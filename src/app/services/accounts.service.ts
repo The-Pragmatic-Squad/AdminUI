@@ -14,4 +14,7 @@ export class AccountsService {
   getAllAccounts(): Observable<Accounts[]>{
     return this.http.get<Accounts[]>(this.accountsUrl);
   }
+  // getAccountById(id: number): Observable<Accounts[]> | undefined {
+  //   return this.http.get<Accounts[]>(account => account.id === id);
+  // }
 }
