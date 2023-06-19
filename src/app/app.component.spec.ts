@@ -13,17 +13,16 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it(`should have as title 'AdminUI'`, () => {
+  it(`should have as title 'Mini-Fawry-UI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('AdminUI');
+    expect(app.title).toEqual('Mini-Fawry-UI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AdminUI app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Mini-Fawry-UI app is running!');
   });
 });
