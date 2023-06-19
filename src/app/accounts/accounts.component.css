@@ -4,17 +4,18 @@
 }
 .badge {
     display: inline-block;
-    padding: 0.95em 0.95em;
+    padding: 0.95em 1.4em;
     font-size: 75%;
     font-weight: 700;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.25rem;
+    border-radius: 0.80rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    background-color: hwb(152 21% 20%);
+    background-color: rgb(235, 255, 248);
+    color: rgb(56, 143, 113);
 }
 .badge-warn {
     display: inline-block;
@@ -25,7 +26,24 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.25rem;
+    border-radius: 0.90rem;
     color: #313131;
-    background-color:#ffd5007a;
+    background-color:rgb(231 244 175);
 }
+.update-select {
+    padding: 10px;
+    margin-right: 12px;
+    width: 50%;
+    font-size: 16px;
+    color: #8f8787;
+    border-color: #96969623;
+    border-radius: 8px;
+    box-shadow: 5px 6px 0 #5b56560f;
+}
+.update-label {
+    font-size: 15px;
+    color: #006b99;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+

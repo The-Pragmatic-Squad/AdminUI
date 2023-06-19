@@ -1,20 +1,22 @@
 <div class="table-title">
-    <div class="row">
-        <div class="col-6">
+    <div class="row d-flex align-items-center">
+        <div class="col-4">
             <h4>All Accounts</h4>
         </div>
-        <div class="col-6">
+        <div class="col-8">
             <div class="row row-update">
-                <div class="col-3">
-                    <select class="form-select form-select-sm mb-4" aria-label=".form-select-sm example" >
-                        <option selected>Filter By</option>
-                        <option value="1">status</option>
-                        <option value="2">last transaction data</option>
-                        <option value="3">type</option>
+                <div class="col-5 d-flex justify-content-between align-items-center">
+                    <label for="statusFilter" class="update-label">Status Filter:</label>
+                    <select class="form-select form-select-sm mb-4 update-select" id="statusFilter"
+                        aria-label=".form-select-sm example" 
+                        (change)="onChange($event)" aria-placeholder="Status">
+                        <option value="all" selected>all</option>
+                        <option value="active">active</option>
+                        <option value="not active">not active</option>
                     </select>
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-outline-success" routerLink = "/add-account">
+                    <button type="button" class="btn btn-outline-success mt-2" routerLink = "/add-account">
                         Add Account
                     </button>
                 </div>
@@ -36,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let account of accounts">
+        <tr *ngFor = "let account of accountsFilter">
             <th scope="row">{{account.id}}</th>
             <td>{{account.accountName}}</td>
             <td>{{account.balance}}</td>
@@ -49,9 +51,11 @@
                 </span>
             </td>
             <td>{{account.type}}</td>
-            <td><button type="button" class="btn btn-outline-primary">
-                View Details
-            </button>
+            <td>
+                <button type="button" class="btn btn-outline-primary" 
+                    [routerLink]="['/transactions', account.id]">
+                    View Details
+                </button>
             </td>
         </tr>
     </tbody>

@@ -1,23 +1,43 @@
-<form>
+<form #registerForm="ngForm" (ngSubmit)="registerForm.form.valid" novalidate>
     <div class="mb-3">
-        <label for="AccountName" class="form-label">AccountName</label>
-        <input type="text" class="form-control" id="accountName">
+        <label for="name" class="form-label">AccountName</label>
+        <input #name = "ngModel" ngModel type="text" class="form-control" 
+            id="name" name="name" required>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" 
+            class="alert alert-danger mt-2">
+            AccountName is required.
+        </div>
+        
     </div>
     <div class="mb-3">
-        <label for="AccountEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="accountEmail">
+        <label for="email" class="form-label">Email</label>
+        <input #email="ngModel" ngModel type="email" class="form-control" 
+            id="email" name="email" required>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" 
+            class="alert alert-danger mt-2">
+            Email is required.
+        </div>    
     </div>
     <div class="mb-3">
-        <label for="inputAmount" class="form-label">Amount</label>
-        <input type="number" class="form-control" id="accountAmount">
+        <label for="amount" class="form-label">Amount</label>
+        <input #amount="ngModel" ngModel type="number" class="form-control" 
+            id="amount" name="amount" required>
+        <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" 
+            class="alert alert-danger mt-2">
+            Amount is required.
+        </div>  
     </div>
     <div class="mb-5">
-        <label for="inputCategory" class="form-label">Type</label>
-        <select id="inputCategory" class="form-select">
-            <option selected>Choose...</option>
+        <label for="type" class="form-label">Type</label>
+        <select #type="ngModel" ngModel id="type" name="type" 
+            class="form-select" required>
             <option>Normal</option>
             <option>VIP</option>
         </select>
+        <div *ngIf="type.invalid && (type.dirty || type.touched)" 
+            class="alert alert-danger mt-2">
+            AccountType is required.
+        </div> 
     </div>    
     <button type="submit" class="btn btn-primary">Add Account</button>
 </form> 
