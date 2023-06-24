@@ -41,21 +41,19 @@
         <tr *ngFor = "let account of accountsFilter">
             <th scope="row">{{account.id}}</th>
             <td>{{account.username}}</td>
-            <!-- <td>{{account.balance}}</td>
-            <td>{{account.createdAt}}</td>
-            <td>{{account.lastTransactionDate}}</td>
+            <td>{{account.balance}}</td>
+            <td>{{account.createdAt | date:'short'}}</td>
+            <td>{{account.lastTransaction | date:'short'}}</td>
             <td>
-                <span [ngClass]="{'badge': account.status === 'active',
-                                    'badge-warn': account.status === 'not active'}">
-                    {{account.status}}
+                <span [ngClass]="{'badge': account.active === true,
+                                    'badge-warn': account.active === false}">
+                    {{account.active ? 'active' : 'not Active'}}
                 </span>
             </td>
-            <td>{{account.type}}</td> -->
+            <td>{{account.type}}</td>
             <td>
                 <a class="btn btn-outline-primary" [routerLink]="['view-details',account.id]"> View Details </a>
-                <!-- <button routerLink="/view-details" (click)="showDetails(account.id)">Details</button> -->
             </td>
         </tr>
     </tbody>
 </table>
-<!--(change)="onChange($event)"-->

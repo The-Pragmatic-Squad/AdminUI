@@ -15,18 +15,15 @@ export class AccountService {
     constructor(private http: HttpClient) {
     }
     getAllAccounts(): Observable<Account[]> {
-         return this.http.get<Account[]>('https://jsonplaceholder.typicode.com/users');
+      return this.http.get<Account[]>(this.url);
     }
     getAccountById(id: number): Observable<Account>{
-      return this.http.get<Account>(`https://jsonplaceholder.typicode.com/users/${id}`);
+      return this.http.get<Account>(`${this.url}/detailed/${id}`);
     }
     getTransactionDetailsByAccountId(id: number):Observable<Transaction[]>{
       return this.http.get<Transaction[]>(`https://jsonplaceholder.typicode.com/todos?userId=${id}`);
     }
-    createAccount(account: AccountDetailed):Observable<{name: string}>{
-      return this.http.post<{name: string}>('https://angularbyprocademy-1af76-default-rtdb.firebaseio.com/accounts.json',account);
-    }
-    getAccountTempById(id: string): Observable<AccountDetailed>{
-      return this.http.get<AccountDetailed>(`https://angularbyprocademy-1af76-default-rtdb.firebaseio.com/accounts/${id}.json`);
-    }       
+    createAccount(account: AccountDetailed):Observable<number>{
+      return this.http.post<number>(`${this.url}`,account);
+    }     
 }

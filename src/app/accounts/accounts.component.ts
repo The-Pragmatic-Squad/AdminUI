@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Accounts } from '../model/accounts';
-// import * as accountsData from '../model/accounts.json';
 import { AccountService } from '../Services/account.service';
 import { Account } from '../model/account';
 
@@ -12,9 +10,8 @@ import { Account } from '../model/account';
 export class AccountsComponent implements OnInit{
   accounts: Account[] = [];
   accountsFilter: Account[] = [];
-  selected_status:string = 'all';
-  accountId = -1;
-
+  selected_status: string = 'all';
+  
   constructor(private accountService:AccountService){}
 
   ngOnInit(): void {
@@ -23,26 +20,18 @@ export class AccountsComponent implements OnInit{
       this.accountsFilter = data;
     });
   }
-
-  
   onChange(value: any): void {
     this.selected_status = value.target.value;
-    console.log(this.selected_status);
+    // console.log(this.selected_status);
     this.filterAccounts();
   } 
- 
-  filterAccounts(){
-    if(this.selected_status === 'all'){
+  filterAccounts() {
+    if (this.selected_status === 'all') {
       this.accountsFilter = [...this.accounts];
-      console.log(this.accounts);
-      
-     
+    } else if (this.selected_status === 'active') {
+      this.accountsFilter = this.accounts.filter(account => account.active === true);
+    } else if (this.selected_status === 'not active') {
+      this.accountsFilter = this.accounts.filter(account => account.active === false);
     }
-    // }else {
-    //   this.accountsFilter =  [...this.accounts]
-    //     .filter(account => account.status && account!.status.toLowerCase() === this.selected_status.toLowerCase());
-    // }
   }
-  
- 
 }

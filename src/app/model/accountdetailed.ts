@@ -1,3 +1,4 @@
+enum AccountType{VIP,  STANDARD}
 export interface AccountDetailed{
     username: string;
     email: string;
@@ -7,6 +8,6 @@ export interface AccountDetailed{
     balance: number;
     createdAt: Date;
     lastTransaction: any;
-    type: string;
+    type: AccountType;
     active: boolean;
 }

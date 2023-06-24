@@ -8,16 +8,16 @@
             <div class="col-md-8" >
                 <div class="card-body update-card" >
                     <h2 class="card-title">{{account.username}}</h2>
-                    <!-- <h6 class="card-subtitle mb-2 text-muted">{{account.email}}</h6> -->
-                    <!-- <p class="card-text"><b>Balance: </b> {{account.balance | currency:'E£'}}</p> -->
-                    <!-- <svg *ngIf="account.status == 'active'; else inActive" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#04AA6D" class="bi bi-toggle-on" viewBox="0 0 16 16">-->
-                        <!-- <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+                    <h6 class="card-subtitle mb-2 text-muted">{{account.email}}</h6>
+                    <p class="card-text"><b>Balance: </b> {{account.balance | currency:'E£'}}</p>
+                    <svg *ngIf="account.active; else inActive" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#04AA6D" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                        <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
                     </svg>
                     <ng-template #inActive>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="Red" class="bi bi-toggle-off" viewBox="0 0 16 16">
                             <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/>
                         </svg>
-                    </ng-template> -->
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -26,10 +26,3 @@
         <app-account-transaction [accountTransactionList]="transactionList"></app-account-transaction>
     </div>
 </div>
-
-
-
-
-<!-- <ul>
-    <li>{{account.accountName}}</li>
-</ul> -->
