@@ -10,8 +10,8 @@
                     <select class="form-select form-select-sm mb-4 update-select" id="statusFilter"
                         aria-label=".form-select-sm example" 
                         (change)="onChange($event)" aria-placeholder="Status">
-                        <option value="all" selected>all</option>
-                        <option value="active">active</option>
+                        <option value="all">all</option>
+                        <option value="active" >active</option>
                         <option value="not active">not active</option>
                     </select>
                 </div>
@@ -40,8 +40,8 @@
     <tbody>
         <tr *ngFor = "let account of accountsFilter">
             <th scope="row">{{account.id}}</th>
-            <td>{{account.accountName}}</td>
-            <td>{{account.balance}}</td>
+            <td>{{account.username}}</td>
+            <!-- <td>{{account.balance}}</td>
             <td>{{account.createdAt}}</td>
             <td>{{account.lastTransactionDate}}</td>
             <td>
@@ -50,13 +50,12 @@
                     {{account.status}}
                 </span>
             </td>
-            <td>{{account.type}}</td>
+            <td>{{account.type}}</td> -->
             <td>
-                <button type="button" class="btn btn-outline-primary" 
-                    [routerLink]="['/transactions', account.id]">
-                    View Details
-                </button>
+                <a class="btn btn-outline-primary" [routerLink]="['view-details',account.id]"> View Details </a>
+                <!-- <button routerLink="/view-details" (click)="showDetails(account.id)">Details</button> -->
             </td>
         </tr>
     </tbody>
 </table>
+<!--(change)="onChange($event)"-->

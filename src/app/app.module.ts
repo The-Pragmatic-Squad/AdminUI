@@ -9,8 +9,10 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountTransactionsHistoryComponent } from './account-transactions-history/account-transactions-history.component';
-import { AccountsService } from './Services/accounts.service';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
+import { TypeFilterPipe } from './Pipes/typePipe.pipe';
+import { DateFilterPipe } from './Pipes/datePipe.pipe';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 
 @NgModule({
@@ -19,7 +21,10 @@ import { AccountsService } from './Services/accounts.service';
     NavbarComponent,
     AccountsComponent,
     AddAccountComponent,
-    AccountTransactionsHistoryComponent,
+    AccountDetailsComponent,
+    AccountTransactionComponent,
+    TypeFilterPipe,
+    DateFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { AccountsService } from './Services/accounts.service';
     FormsModule,
     HttpClientModule 
   ],
-  providers: [AccountsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

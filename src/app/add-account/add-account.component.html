@@ -1,43 +1,71 @@
-<form #registerForm="ngForm" (ngSubmit)="registerForm.form.valid" novalidate>
+<form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm)" novalidate>
     <div class="mb-3">
-        <label for="name" class="form-label">AccountName</label>
-        <input #name = "ngModel" ngModel type="text" class="form-control" 
-            id="name" name="name" required>
+        <label for="name" class="form-label"> UserName</label>
+        <input type="text" class="form-control"  id="name" required [(ngModel)]="account.username"  
+        name="name" #name="ngModel">
         <div *ngIf="name.invalid && (name.dirty || name.touched)" 
             class="alert alert-danger mt-2">
-            AccountName is required.
-        </div>
-        
+            UserName is required.
+        </div> 
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input #email="ngModel" ngModel type="email" class="form-control" 
-            id="email" name="email" required>
+        <input type="email" class="form-control" id="email" required [(ngModel)]="account.email"  
+        name="email" #email="ngModel">
         <div *ngIf="email.invalid && (email.dirty || email.touched)" 
             class="alert alert-danger mt-2">
             Email is required.
         </div>    
     </div>
     <div class="mb-3">
-        <label for="amount" class="form-label">Amount</label>
-        <input #amount="ngModel" ngModel type="number" class="form-control" 
-            id="amount" name="amount" required>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required [(ngModel)]="account.password"  
+        name="password" #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" 
+            class="alert alert-danger mt-2">
+            Password is required.
+        </div>    
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="number" class="form-control" id="phone" required [(ngModel)]="account.phone"  
+        name="phone" #phone="ngModel">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" 
+            class="alert alert-danger mt-2">
+            Phone Number is required.
+        </div>    
+    </div>
+    <div class="mb-3">
+        <label for="creditNo" class="form-label">Credit Number</label>
+        <input type="number" class="form-control" id="credit" required [(ngModel)]="account.creditNumber"  
+        name="credit" #credit="ngModel">
+        <div *ngIf="credit.invalid && (credit.dirty || credit.touched)" 
+            class="alert alert-danger mt-2">
+            Credit Number is required.
+        </div>    
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">Balance</label>
+        <input type="number" class="form-control"  id="amount" required [(ngModel)]="account.balance"  
+        name="amount" #amount="ngModel">
         <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" 
             class="alert alert-danger mt-2">
-            Amount is required.
+            Balance is required.
         </div>  
     </div>
     <div class="mb-5">
         <label for="type" class="form-label">Type</label>
-        <select #type="ngModel" ngModel id="type" name="type" 
+        <select #type="ngModel"  id="type" name="type" [(ngModel)]="account.type"
             class="form-select" required>
-            <option>Normal</option>
+            <option>STANDARD</option>
             <option>VIP</option>
         </select>
         <div *ngIf="type.invalid && (type.dirty || type.touched)" 
             class="alert alert-danger mt-2">
-            AccountType is required.
+            Account Type is required.
         </div> 
     </div>    
-    <button type="submit" class="btn btn-primary">Add Account</button>
+    <button type="submit" class="btn btn-success" [disabled]="!accountForm.form.valid">Add Account</button>
+
+    <a class="btn btn-outline-primary ms-5" [hidden]="resTemp.length == 0" routerLink="/view-accounts">All Accounts</a>
 </form> 
