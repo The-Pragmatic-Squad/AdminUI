@@ -5,7 +5,7 @@ import { AccountService } from '../Services/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Account } from '../model/account';
 
-enum AccountType{VIP,  STANDARD}
+enum AccountType { VIP, STANDARD }
 
 @Component({
   selector: 'app-add-account',
@@ -14,17 +14,16 @@ enum AccountType{VIP,  STANDARD}
 })
 export class AddAccountComponent {
   accountForm!: FormGroup;
-  constructor(private fb: FormBuilder, private accountService: AccountService){
+  constructor(private fb: FormBuilder, private accountService: AccountService) {
     this.accountForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       username: ["", [Validators.required]],
-      password:["", [Validators.required, Validators.minLength(8)]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
       phone: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      credit: ["", [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
-      balance: ["", [Validators.required, Validators.min(50)]],
+      balance: ["", [Validators.min(0)]],
       type: ["STANDARD", [Validators.required]]
     })
-    
+
   }
   account: AccountDetailed = {
     username: '',
@@ -35,14 +34,14 @@ export class AddAccountComponent {
     balance: 0,
     createdAt: new Date(),
     lastTransaction: null,
-    type: AccountType.STANDARD,
+    type: 'STANDARD',
     active: true
   };
   resId: number = 0;
-  
 
- 
-  addAccount(){
+
+
+  addAccount() {
     this.account.username = this.accountForm.get('username')?.value;
     this.account.email = this.accountForm.get('email')?.value;
     this.account.password = this.accountForm.get('password')?.value;
@@ -53,15 +52,15 @@ export class AddAccountComponent {
     console.log(this.account);
     this.save(this.account);
   }
-  save(account: AccountDetailed){
+  save(account: AccountDetailed) {
     this.accountService.createAccount(account).subscribe(
-      (res)=>{
+      (res) => {
         this.resId = res;
         console.log(res);
       },
-      (err: HttpErrorResponse)=>{
+      (err: HttpErrorResponse) => {
         console.log(err);
-        
+
       });
   }
 

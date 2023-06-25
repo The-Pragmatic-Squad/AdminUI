@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Transaction } from '../model/transaction';
 import { AccountService } from '../Services/account.service';
 
-enum TransactionType{CREDIT, DEPIT}
+enum TransactionType { DEPOSIT, WITHDRAWAL }
+enum TransactionStatus { PENDING, SUCCESS, FAILED }
 @Component({
   selector: 'app-account-transaction',
   templateUrl: './account-transaction.component.html',
@@ -10,8 +11,11 @@ enum TransactionType{CREDIT, DEPIT}
 })
 
 export class AccountTransactionComponent implements OnInit {
+  TransactionStatus!: TransactionStatus;
+  account: any;
+  TransactionType!: TransactionType;
 
-  constructor(private accountService: AccountService){}
+  constructor(private accountService: AccountService) { }
 
   transactionIndex: number = 0;
 
@@ -20,11 +24,13 @@ export class AccountTransactionComponent implements OnInit {
   dateFrom: string = '';
   dateTo: string = '';
 
+
+
   ngOnInit(): void {
-    
-      // console.log(this.accountTransactionList);
-      // this.accountTransactionList.sort((transactionA, transactionB) => Number(transactionA.date) - Number(transactionB.date));
-    
-    // console.log(this.typeValue);
+    //  log all accountTransactionList
+
+
+    // console.log(this.accountTransactionList);
+
   }
 }

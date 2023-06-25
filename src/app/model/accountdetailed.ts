@@ -1,5 +1,5 @@
-enum AccountType{VIP,  STANDARD}
-export interface AccountDetailed{
+enum AccountType { VIP, STANDARD }
+export interface AccountDetailed {
     username: string;
     email: string;
     password: string;
@@ -8,6 +8,6 @@ export interface AccountDetailed{
     balance: number;
     createdAt: Date;
     lastTransaction: any;
-    type: AccountType;
+    type: string;
     active: boolean;
 }

@@ -1,71 +1,65 @@
-<form [formGroup]="accountForm" (ngSubmit)="addAccount()" >
+<form [formGroup]="accountForm" (ngSubmit)="addAccount()">
     <div class="mb-3">
         <label for="name" class="form-label"> UserName</label>
-        <input type="text" class="form-control"  id="name" formControlName="username"
-        name="name">
-        <div class="alert alert-danger" *ngIf="accountForm.controls['username'].invalid && (accountForm.controls['username'].touched || accountForm.controls['username'].dirty)">
+        <input type="text" class="form-control" id="name" formControlName="username" name="name">
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['username'].invalid && (accountForm.controls['username'].touched || accountForm.controls['username'].dirty)">
             <span *ngIf="accountForm.controls['username'].errors!['required']">UserName required</span>
-      </div>
+        </div>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email"
-        name="email">
-        <div class="alert alert-danger" *ngIf="accountForm.controls['email'].invalid && (accountForm.controls['email'].touched || accountForm.controls['email'].dirty)">
+        <input type="email" class="form-control" id="email" formControlName="email" name="email">
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['email'].invalid && (accountForm.controls['email'].touched || accountForm.controls['email'].dirty)">
             <span *ngIf="accountForm.controls['email'].errors!['required']">Email is required</span>
             <span *ngIf="accountForm.controls['email'].errors!['email']">Email must include @</span>
-      </div>   
+        </div>
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" formControlName="password"
-        name="password">
-        <div class="alert alert-danger" *ngIf="accountForm.controls['password'].invalid && (accountForm.controls['password'].touched || accountForm.controls['password'].dirty)">
-            <span *ngIf="accountForm.controls['password'].errors!['required']"> Password is  required</span>
+        <input type="password" class="form-control" id="password" formControlName="password" name="password">
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['password'].invalid && (accountForm.controls['password'].touched || accountForm.controls['password'].dirty)">
+            <span *ngIf="accountForm.controls['password'].errors!['required']"> Password is required</span>
             <span *ngIf="accountForm.controls['password'].errors!['minlength']">password Must be > 8 chars</span>
         </div>
     </div>
     <div class="mb-3">
         <label for="phone" class="form-label">Phone Number</label>
-        <input type="text" class="form-control" id="phone" formControlName="phone"
-        name="phone" >
-        <div class="alert alert-danger" *ngIf="accountForm.controls['phone'].invalid && (accountForm.controls['phone'].touched || accountForm.controls['phone'].dirty)">
-            <span *ngIf="accountForm.controls['phone'].errors!['required']"> Phone is  required</span>
-            <span *ngIf="accountForm.controls['phone'].errors!['minlength']">Phone Number Must be equal to 11 digits</span>
-            <span *ngIf="accountForm.controls['phone'].errors!['maxlength']">Phone Number Must be equal to 11 digits</span>
-        </div> 
+        <input type="text" class="form-control" id="phone" formControlName="phone" name="phone">
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['phone'].invalid && (accountForm.controls['phone'].touched || accountForm.controls['phone'].dirty)">
+            <span *ngIf="accountForm.controls['phone'].errors!['required']"> Phone is required</span>
+            <span *ngIf="accountForm.controls['phone'].errors!['minlength']">Phone Number Must be equal to 11
+                digits</span>
+            <span *ngIf="accountForm.controls['phone'].errors!['maxlength']">Phone Number Must be equal to 11
+                digits</span>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="creditNo" class="form-label">Credit Number</label>
-        <input type="text" class="form-control" id="credit" formControlName="credit"
-        name="credit">
-        <div class="alert alert-danger" *ngIf="accountForm.controls['credit'].invalid && (accountForm.controls['credit'].touched || accountForm.controls['credit'].dirty)">
-            <span *ngIf="accountForm.controls['credit'].errors!['required']"> Credit Number is  required</span>
-            <span *ngIf="accountForm.controls['credit'].errors!['minlength']">Credit Number Must be equal to 16 digits</span>
-            <span *ngIf="accountForm.controls['credit'].errors!['maxlength']">Credit Number Must be equal to 16 digits</span>
-        </div>   
-    </div>
+
     <div class="mb-3">
         <label for="amount" class="form-label">Balance</label>
-        <input type="number" class="form-control"  id="amount" formControlName="balance"
-        name="amount">
-        <div class="alert alert-danger" *ngIf="accountForm.controls['balance'].invalid && (accountForm.controls['balance'].touched || accountForm.controls['balance'].dirty)">
-            <span *ngIf="accountForm.controls['balance'].errors!['required']"> Balance is  required</span>
+        <input type="number" class="form-control" id="amount" formControlName="balance" name="amount"
+            value="{{account.balance || 0}}" min="0">
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['balance'].invalid && (accountForm.controls['balance'].touched || accountForm.controls['balance'].dirty)">
+            <span *ngIf="accountForm.controls['balance'].errors!['required']"> Balance is required</span>
             <span *ngIf="accountForm.controls['balance'].errors!['min']">Balance Must be >= 50 E£</span>
-        </div>  
+        </div>
     </div>
     <div class="mb-5">
         <label for="type" class="form-label">Type</label>
-        <select id="type" name="type" formControlName="type"
-            class="form-select">
+        <select id="type" name="type" formControlName="type" class="form-select">
             <option>STANDARD</option>
             <option>VIP</option>
         </select>
-        <div class="alert alert-danger" *ngIf="accountForm.controls['type'].invalid && (accountForm.controls['type'].touched || accountForm.controls['type'].dirty)">
-            <span *ngIf="accountForm.controls['type'].errors!['required']"> Type is  required</span>
-        </div>  
-    </div>    
+        <div class="alert alert-danger"
+            *ngIf="accountForm.controls['type'].invalid && (accountForm.controls['type'].touched || accountForm.controls['type'].dirty)">
+            <span *ngIf="accountForm.controls['type'].errors!['required']"> Type is required</span>
+        </div>
+    </div>
     <button type="submit" class="btn btn-success" [disabled]="!accountForm.valid">Add Account</button>
 
-    <a class="btn btn-outline-primary ms-5" [hidden]="resId > 0" routerLink="/view-accounts">All Accounts</a>
-</form> 
+    <a class="btn btn-outline-primary ms-5" [hidden]="resId > 0" routerLink="/">All Accounts</a>
+</form>

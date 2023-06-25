@@ -1,4 +1,4 @@
-enum AccountType{VIP,  STANDARD}
+enum AccountType { VIP, STANDARD }
 export interface Account {
     id: number;
     username: string;
@@ -7,7 +7,7 @@ export interface Account {
     createdAt: string;
     lastTransaction: string;
     active: boolean;
-    type: AccountType;
+    type: string;
 }
 
 

@@ -1,12 +1,13 @@
-enum TransactionType{DEPIT, CREDIT}
-export interface Transaction{
+enum TransactionType { DEPOSIT, WITHDRAWAL }
+enum TransactionStatus { PENDING, SUCCESS, FAILED }
+export interface Transaction {
     id: number;
-    // accountId: number = 0;
-    title: string;
+    accountId: number;
     usertId: number;
-    // date: Date = new Date();
-    // amount: number = 0.0;
-    // balanceBefore: number = 0.0;
-    // balanceAfter: number = 0.0;
-    // type: TransactionType = TransactionType.CREDIT;
+    date: Date;
+    amount: number;
+    balanceBefore: number;
+    balanceAfter: number;
+    type: string;
+    status: string;
 } 

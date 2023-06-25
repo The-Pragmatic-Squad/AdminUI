@@ -8,15 +8,14 @@
                 <div class="col-5 d-flex justify-content-between align-items-center">
                     <label for="statusFilter" class="update-label">Status Filter:</label>
                     <select class="form-select form-select-sm mb-4 update-select" id="statusFilter"
-                        aria-label=".form-select-sm example" 
-                        (change)="onChange($event)" aria-placeholder="Status">
+                        aria-label=".form-select-sm example" (change)="onChange($event)" aria-placeholder="Status">
                         <option value="all">all</option>
-                        <option value="active" >active</option>
+                        <option value="active">active</option>
                         <option value="not active">not active</option>
                     </select>
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-outline-success mt-2" routerLink = "/add-account">
+                    <button type="button" class="btn btn-outline-success mt-2" routerLink="/add-account">
                         Add Account
                     </button>
                 </div>
@@ -38,12 +37,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let account of accountsFilter">
+        <tr *ngFor="let account of accountsFilter">
             <th scope="row">{{account.id}}</th>
             <td>{{account.username}}</td>
             <td>{{account.balance}}</td>
             <td>{{account.createdAt | date:'short'}}</td>
-            <td>{{account.lastTransaction | date:'short'}}</td>
+            <td>{{account.lastTransaction ? (account.lastTransaction | date:'short' ) : 'N/A' }}</td>
             <td>
                 <span [ngClass]="{'badge': account.active === true,
                                     'badge-warn': account.active === false}">

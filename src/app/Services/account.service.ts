@@ -18,10 +18,10 @@ export class AccountService {
       return this.http.get<Account[]>(this.url);
     }
     getAccountById(id: number): Observable<Account>{
-      return this.http.get<Account>(`${this.url}/detailed/${id}`);
+      return this.http.get<Account>(`${this.url}/avatar/${id}`);
     }
     getTransactionDetailsByAccountId(id: number):Observable<Transaction[]>{
-      return this.http.get<Transaction[]>(`https://jsonplaceholder.typicode.com/todos?userId=${id}`);
+      return this.http.get<Transaction[]>(`${this.url}/${id}/transactions`);
     }
     createAccount(account: AccountDetailed):Observable<number>{
       return this.http.post<number>(`${this.url}`,account);
