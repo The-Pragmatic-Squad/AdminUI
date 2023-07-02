@@ -1,4 +1,3 @@
-<!-- <table class="table table-striped" *ngFor="let transaction of accountTransactionList; index as i"> -->
 <div class="table-title" *ngIf="accountTransactionList.length !== 0 && accountTransactionList !== undefined">
 
   <div class="row">
@@ -18,7 +17,6 @@
               <option value="SUCCESS">SUCCESS</option>
               <option value="FAILED">FAILED</option>
             </optgroup>
-            <!-- <option value="Date">Date</option> -->
           </select>
 
         </div>
@@ -33,7 +31,7 @@
   </div>
 </div>
 <table class="table table-hover" *ngIf="accountTransactionList.length !== 0 && accountTransactionList !== undefined">
-  <!-- -->
+  
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
@@ -53,7 +51,6 @@
         || (transaction.status === 'SUCCESS' && typeValue ==='SUCCESS')
         || (transaction.status === 'FAILED' && typeValue ==='FAILED')
         ">
-        <!---->
         <td scope="row"><b>{{i + 1}}</b></td>
         <td>{{transaction.id}}</td>
 
@@ -61,19 +58,16 @@
         <ng-template #withdraw>
           <td>Withdraw</td>
         </ng-template>
-        <td>{{transaction.amount | currency:'$'}}</td>
-        <td>{{transaction.balanceBefore | currency:'$' }}</td>
-        <td>{{transaction.balanceAfter | currency:'$'}}</td>
-        <td>{{transaction.date | date}}</td>
+        <td>{{transaction.amount | currency}}</td>
+        <td>{{transaction.balanceBefore | currency }}</td>
+        <td>{{transaction.balanceAfter | currency}}</td>
+        <td>{{transaction.date | date:'short'}}</td>
         <td>
-          {{transaction.status}}
-          <!-- <span [ngClass]="{'badge': transaction.status ===  'SUCCESS',
-                          'badge-warn': transaction.status === 'FAILED'}">
+          <span [ngStyle]="{color: transaction.status ===  'SUCCESS'? 'green': 'red'}">
             {{transaction.status}}
-          </span> -->
+          </span>
         </td>
       </tr>
     </ng-container>
   </tbody>
 </table>
-<!--| filterByType: typeValue | filterByDate: dateFrom: dateTo;-->

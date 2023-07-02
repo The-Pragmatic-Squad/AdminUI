@@ -3,9 +3,6 @@ import { AccountDetailed } from '../model/accountdetailed';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AccountService } from '../Services/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Account } from '../model/account';
-
-enum AccountType { VIP, STANDARD }
 
 @Component({
   selector: 'app-add-account',
@@ -17,7 +14,7 @@ export class AddAccountComponent {
   constructor(private fb: FormBuilder, private accountService: AccountService) {
     this.accountForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
-      username: ["", [Validators.required]],
+      username: ["", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       password: ["", [Validators.required, Validators.minLength(8)]],
       phone: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       balance: ["", [Validators.min(0)]],

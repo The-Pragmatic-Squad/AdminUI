@@ -1,10 +1,14 @@
 <form [formGroup]="accountForm" (ngSubmit)="addAccount()">
     <div class="mb-3">
-        <label for="name" class="form-label"> UserName</label>
+        <label for="name" class="form-label"> User Name</label>
         <input type="text" class="form-control" id="name" formControlName="username" name="name">
         <div class="alert alert-danger"
             *ngIf="accountForm.controls['username'].invalid && (accountForm.controls['username'].touched || accountForm.controls['username'].dirty)">
-            <span *ngIf="accountForm.controls['username'].errors!['required']">UserName required</span>
+            <span *ngIf="accountForm.controls['username'].errors!['required']">User Name required</span>
+            <span *ngIf="accountForm.controls['username'].errors!['minlength']">User Name Must be min 8
+                characters</span>
+            <span *ngIf="accountForm.controls['username'].errors!['maxlength']">User Name Must be max 20
+                characters</span>
         </div>
     </div>
     <div class="mb-3">

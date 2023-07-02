@@ -1,4 +1,3 @@
-enum AccountType { VIP, STANDARD }
 export interface Account {
     id: number;
     username: string;

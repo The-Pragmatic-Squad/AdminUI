@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Accounts } from '../model/accounts';
 import { AccountService } from '../Services/account.service';
 import { Account } from '../model/account';
 import { Transaction } from '../model/transaction';
-enum TransactionType { DEPOSIT, WITHDRAWAL }
 @Component({
   selector: 'app-account-details',
   templateUrl: './account-details.component.html',

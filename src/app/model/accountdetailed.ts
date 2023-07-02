@@ -1,4 +1,3 @@
-enum AccountType { VIP, STANDARD }
 export interface AccountDetailed {
     username: string;
     email: string;

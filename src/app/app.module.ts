@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
-import { TypeFilterPipe } from './Pipes/typePipe.pipe';
 import { DateFilterPipe } from './Pipes/datePipe.pipe';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 
@@ -23,7 +22,6 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     AddAccountComponent,
     AccountDetailsComponent,
     AccountTransactionComponent,
-    TypeFilterPipe,
     DateFilterPipe
   ],
   imports: [

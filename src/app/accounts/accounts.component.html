@@ -40,7 +40,7 @@
         <tr *ngFor="let account of accountsFilter">
             <th scope="row">{{account.id}}</th>
             <td>{{account.username}}</td>
-            <td>{{account.balance}}</td>
+            <td>{{account.balance | currency}}</td>
             <td>{{account.createdAt | date:'short'}}</td>
             <td>{{account.lastTransaction ? (account.lastTransaction | date:'short' ) : 'N/A' }}</td>
             <td>

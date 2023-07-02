@@ -6,7 +6,6 @@ import { enviroment } from 'src/enviroments/enviroment';
 import { Account } from '../model/account';
 import { Transaction } from '../model/transaction';
 import { AccountDetailed } from '../model/accountdetailed';
-// import * as data from '../model/accounts.json'
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +23,6 @@ export class AccountService {
     return this.http.get<Transaction[]>(`${this.url}/${id}/transactions`);
   }
   createAccount(account: AccountDetailed): Observable<number> {
-    // return this.http.post<number>(`${this.url}`, account);
     return this.http.post<number>(`${this.url}`, account);
 
 
