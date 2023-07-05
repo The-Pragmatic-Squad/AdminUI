@@ -65,5 +65,5 @@
     </div>
     <button type="submit" class="btn btn-success" [disabled]="!accountForm.valid">Add Account</button>
 
-    <a class="btn btn-outline-primary ms-5" [hidden]="(resId == 0)" routerLink="/">All Accounts</a>
+    <a class="btn btn-outline-primary ms-5" [hidden]="(resId === 0)" routerLink="/" >All Accounts</a>
 </form>

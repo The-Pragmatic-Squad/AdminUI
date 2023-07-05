@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 import { DateFilterPipe } from './Pipes/datePipe.pipe';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     AddAccountComponent,
     AccountDetailsComponent,
     AccountTransactionComponent,
-    DateFilterPipe
+    DateFilterPipe,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatDialogModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

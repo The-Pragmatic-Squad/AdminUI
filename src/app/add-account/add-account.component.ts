@@ -3,6 +3,8 @@ import { AccountDetailed } from '../model/accountdetailed';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AccountService } from '../Services/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PopUpComponent } from '../pop-up/pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-account',
@@ -11,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AddAccountComponent {
   accountForm!: FormGroup;
-  constructor(private fb: FormBuilder, private accountService: AccountService) {
+  constructor(private fb: FormBuilder, private accountService: AccountService, private dialogRef: MatDialog) {
     this.accountForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       username: ["", [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
@@ -34,8 +36,8 @@ export class AddAccountComponent {
     type: 'STANDARD',
     active: true
   };
-  resId: number = 0;
-
+  resId:number=0;
+  accountStatus: string = 'Successfully';
 
 
   addAccount() {
@@ -53,12 +55,24 @@ export class AddAccountComponent {
     this.accountService.createAccount(account).subscribe(
       (res) => {
         this.resId = res;
-        console.log(res);
+        console.log(this.resId);
+        this.accountStatus = 'Successfully';
+        this.openDialog();
+        
       },
       (err: HttpErrorResponse) => {
+        this.accountStatus = 'Failed';
+        this.openDialog();
         console.log(err);
 
       });
+  }
+  openDialog(){
+    this.dialogRef.open(PopUpComponent,{
+      data:{
+        status: this.accountStatus
+      }
+    });
   }
 
 }
