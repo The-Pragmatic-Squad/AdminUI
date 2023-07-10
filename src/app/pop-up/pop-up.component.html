@@ -1,0 +1,5 @@
+<p *ngIf="accountStatus=== 'Successfully';else failed">Your Account is created <b style="color: green;">{{accountStatus}}</b></p>  
+<ng-template #failed>
+    <p>Your Account is <b style="color: red;">{{accountStatus}}</b> to be Created</p>
+</ng-template>  
+
