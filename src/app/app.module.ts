@@ -8,12 +8,14 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 import { DateFilterPipe } from './Pipes/datePipe.pipe';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { PaginationService } from './Services/pagination.service';
 
 
 @NgModule({
@@ -33,10 +35,12 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     HttpClientModule,
-    MatDialogModule 
+    MatDialogModule,
+    
   ],
-  providers: [],
+  providers: [PaginationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

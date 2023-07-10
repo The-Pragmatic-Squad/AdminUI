@@ -1,5 +1,9 @@
-<div class="table-title" *ngIf="accountTransactionList.length !== 0 && accountTransactionList !== undefined">
-
+<div
+  class="table-title"
+  *ngIf="
+    accountTransactionList.length !== 0 && accountTransactionList !== undefined
+  "
+>
   <div class="row">
     <div class="col-6">
       <h4>All Transactions</h4>
@@ -7,8 +11,12 @@
     <div class="col-10">
       <div class="row row-update">
         <div class="col-3">
-          <select class="form-select form-select-sm mb-4" aria-label=".form-select-sm example" [(ngModel)]="typeValue">
-            <option value='' selected>Filter By</option>
+          <select
+            class="form-select form-select-sm mb-4"
+            aria-label=".form-select-sm example"
+            [(ngModel)]="typeValue"
+          >
+            <option value="" selected>Filter By</option>
             <optgroup label="Type">
               <option value="DEPOSIT">DEPOSIT</option>
               <option value="WITHDRAWAL">WITHDRAWAL</option>
@@ -18,20 +26,29 @@
               <option value="FAILED">FAILED</option>
             </optgroup>
           </select>
-
         </div>
         <div class="col-7 form-group mb-4">
           <div class="col-sm-6 d-flex justify-content-between">
-            <b>From:</b><input type="text" placeholder="YYYY-MM-DD" [(ngModel)]="dateFrom">
-            <b>To:</b><input type="text" placeholder="YYYY-MM-DD" [(ngModel)]="dateTo">
+            <b>From:</b
+            ><input
+              type="text"
+              placeholder="YYYY-MM-DD"
+              [(ngModel)]="dateFrom"
+            />
+            <b>To:</b
+            ><input type="text" placeholder="YYYY-MM-DD" [(ngModel)]="dateTo" />
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<table class="table table-hover" *ngIf="accountTransactionList.length !== 0 && accountTransactionList !== undefined">
-  
+<table
+  class="table table-hover"
+  *ngIf="
+    accountTransactionList.length !== 0 && accountTransactionList !== undefined
+  "
+>
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
@@ -45,29 +62,61 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let transaction of accountTransactionList | filterByDate: dateFrom: dateTo; let i = index ">
-      <tr *ngIf=" typeValue === '' ||(transaction.type === 'DEPOSIT' && typeValue ==='DEPOSIT') 
-        || (transaction.type === 'WITHDRAWAL' && typeValue ==='WITHDRAWAL')
-        || (transaction.status === 'SUCCESS' && typeValue ==='SUCCESS')
-        || (transaction.status === 'FAILED' && typeValue ==='FAILED')
-        ">
-        <td scope="row"><b>{{i + 1}}</b></td>
-        <td>{{transaction.id}}</td>
+    <ng-container
+      *ngFor="
+        let transaction of accountTransactionList
+          | paginate
+            : {
+                itemsPerPage: this.paginationService.pageSize,
+                currentPage: this.paginationService.currentPage,
+                totalItems: this.paginationService.totalTransactions
+              }
+          | filterByDate : dateFrom : dateTo;
+        let i = index
+      "
+    >
+      <tr
+        *ngIf="
+          typeValue === '' ||
+          (transaction.type === 'DEPOSIT' && typeValue === 'DEPOSIT') ||
+          (transaction.type === 'WITHDRAWAL' && typeValue === 'WITHDRAWAL') ||
+          (transaction.status === 'SUCCESS' && typeValue === 'SUCCESS') ||
+          (transaction.status === 'FAILED' && typeValue === 'FAILED')
+        "
+      >
+        <td scope="row">
+          <b>{{ i + 1 }}</b>
+        </td>
+        <td>{{ transaction.id }}</td>
 
-        <td *ngIf="transaction.type === 'DEPOSIT';else withdraw;"> Deposit </td>
+        <td *ngIf="transaction.type === 'DEPOSIT'; else withdraw">Deposit</td>
         <ng-template #withdraw>
           <td>Withdraw</td>
         </ng-template>
-        <td>{{transaction.amount | currency}}</td>
-        <td>{{transaction.balanceBefore | currency }}</td>
-        <td>{{transaction.balanceAfter | currency}}</td>
-        <td>{{transaction.date | date:'short'}}</td>
+        <td>{{ transaction.amount | currency }}</td>
+        <td>{{ transaction.balanceBefore | currency }}</td>
+        <td>{{ transaction.balanceAfter | currency }}</td>
+        <td>{{ transaction.date | date : "short" }}</td>
         <td>
-          <span [ngStyle]="{color: transaction.status ===  'SUCCESS'? 'green': 'red'}">
-            {{transaction.status}}
+          <span
+            [ngStyle]="{
+              color: transaction.status === 'SUCCESS' ? 'green' : 'red'
+            }"
+          >
+            {{ transaction.status }}
           </span>
         </td>
       </tr>
     </ng-container>
   </tbody>
 </table>
+<!-- Pagination controls -->
+<div class="d-flex justify-content-end">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="renderPage($event)"
+  >
+  </pagination-controls>
+</div>
+

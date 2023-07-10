@@ -1,4 +1,4 @@
-export interface Transaction {
+export interface ApiResponse<T> {
     id: number;
     accountId: number;
     userId: number;
@@ -8,4 +8,5 @@ export interface Transaction {
     balanceAfter: number;
     type: string;
     status: string;
-} 
+    data: { page: T };
+}
