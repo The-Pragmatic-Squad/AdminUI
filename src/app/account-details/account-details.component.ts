@@ -12,26 +12,36 @@ import { PaginationService } from '../Services/pagination.service';
 export class AccountDetailsComponent implements OnInit {
   account!: Account;
   transactionList: Transaction[] = [];
-    
+
   constructor(private activeRoute: ActivatedRoute, private accountService: AccountService, private paginationService: PaginationService) { }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(res => {
-      this.accountService.getAccountById(res['id']).subscribe(res => {
+      this.accountService.getAccountById(res['id']).subscribe(async res => {
         this.account = res;
-        this.fetchTransactions(res['id']);
+        await this.fetchTransactions(res['id'], 0);
+        console.log("(ONINIT)Account details:  " + res['id']);
+        console.log(this.account);
+        console.log(this.transactionList);
       });
     });
   }
 
-  public fetchTransactions(accountId: number): void {
-    this.accountService.getTransactionDetailsByAccountId(accountId, this.paginationService.currentPage, this.paginationService.pageSize)
+  public async fetchTransactions(accountId: number, page: number): Promise<void> {
+
+
+    this.accountService.getTransactionDetailsByAccountId(accountId, page, this.paginationService.pageSize)
       .subscribe(res => {
-        if (Array.isArray(res)) {
-          this.transactionList = res;
-          // Set the totalTransactions property
-          this.paginationService.totalTransactions = res.length;
-          // console.log(this.transactionList);
+
+        console.log("Fetcing transactions: with page: " + page + " and pageSize: " + this.paginationService.pageSize + "");
+        let totalTransactions = res['totalElements'];
+        this.paginationService.totalTransactions = totalTransactions;
+        let transactions = structuredClone(res.content);
+        console.log("Total transactions: " + totalTransactions);
+        console.log(res.content);
+        if (Array.isArray(transactions)) {
+          this.transactionList = transactions;
+          this.paginationService.totalTransactions = totalTransactions;
           this.transactionList.forEach((transaction) => {
             transaction.date = new Date(transaction.date);
           });
